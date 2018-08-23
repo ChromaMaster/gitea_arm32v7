@@ -1,9 +1,6 @@
 version: '3'
 
 networks:
-  # If you use traefik as a reverse proxy for use ssl
-  # proxy_traefik:
-  #   external: true
   internal-network:
     driver: bridge   
 
@@ -27,8 +24,7 @@ services:
     build: .
     #image: your_image_name
     restart: unless-stopped
-    networks:
-      - proxy_traefik
+    networks:      
       - internal-network
     ports:
       - "3000:3000"
@@ -43,8 +39,3 @@ services:
       - DB_PASSWD=
     depends_on:
       - db
-    # If you use traefik as a reverse proxy for use ssl
-    # labels:
-    #   traefik.frontend.rule: "PathPrefix:/"      
-    #   traefik.port: 3000
-    #   traefik.docker.network: proxy_traefik
