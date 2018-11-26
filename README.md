@@ -33,7 +33,7 @@ These instructions will get you a copy of the project up and running on your loc
 First of all you need to clone this repository locally
 
 ```sh
-git clone https://gitea.dropi.com.es/Vlad/gitea_armv7 
+git clone https://git.dropi.com.es/ChromaMaster/gitea_armv7 
 ```
 
 The get into the **gitea_armv7** directory using `cd`.
