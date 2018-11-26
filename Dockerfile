@@ -1,6 +1,8 @@
-FROM armhf/alpine:3.5
+FROM chromamaster/alpine_arm32v7
 
-ENV GITEA_RELEASE_URL https://github.com/go-gitea/gitea/releases/download/v1.5.0/gitea-1.5.0-linux-arm-7
+ENV GITEA_VERSION 1.6.0
+ENV GITEA_ARCH arm-7
+ENV GITEA_RELEASE_URL https://github.com/go-gitea/gitea/releases/download/v${GITEA_VERSION}/gitea-${GITEA_VERSION}-linux-${GITEA_ARCH}
 
 ENV USER git
 ENV GITEA_CUSTOM /data/gitea
@@ -34,6 +36,7 @@ RUN apk update && \
   echo "git:$(date +%s | sha256sum | base64 | head -c 32)" | chpasswd
 
 COPY gitea/docker /
+
 RUN mkdir -p /app/gitea && \
     wget -O /app/gitea/gitea $GITEA_RELEASE_URL && \
     chmod +x /app/gitea/gitea
